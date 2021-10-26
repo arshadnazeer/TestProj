@@ -17,6 +17,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String","API_KEY","\"cf64e61c33efee62f3390051ebfca8ce\""
+        buildConfigField "String","BASE_URL","\"https://ws.audioscrobbler.com/\""
+        buildConfigField "String","method","\"artist.gettopalbum\""
+        buildConfigField "String","artist","\"cher\""
     }
 
     buildTypes {
