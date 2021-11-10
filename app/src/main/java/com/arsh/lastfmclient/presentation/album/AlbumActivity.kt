@@ -28,7 +28,11 @@ class AlbumActivity : AppCompatActivity() {
             .inject(this)
 
         albumViewModel = ViewModelProvider(this,factory).get(AlbumViewModel::class.java)
-        initRecyclerView()
+        val responseLiveData = albumViewModel.getAlbums()
+        responseLiveData.observe(this, Observer {
+            Log.e("TAGGG", it.toString())
+        })
+//        initRecyclerView()
 
     }
 

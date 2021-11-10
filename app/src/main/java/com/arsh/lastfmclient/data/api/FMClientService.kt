@@ -11,9 +11,9 @@ interface FMClientService {
     @GET("2.0/")
     suspend fun getTopAlbums(
         @Query("method")
-        method:String,
+        method:String = BuildConfig.method,
         @Query("artist")
-        Artist:String,
+        Artist:String = BuildConfig.artist,
         @Query("api_key")
         apiKey:String = BuildConfig.API_KEY
     ): Response<Topalbums>

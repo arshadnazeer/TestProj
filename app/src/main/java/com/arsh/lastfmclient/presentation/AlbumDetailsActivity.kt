@@ -1,4 +1,4 @@
-package com.arsh.lastfmclient.presentation.album
+package com.arsh.lastfmclient.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
