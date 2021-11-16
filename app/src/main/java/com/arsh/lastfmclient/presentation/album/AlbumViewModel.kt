@@ -2,7 +2,7 @@ package com.arsh.lastfmclient.presentation.album
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.arsh.lastfmclient.domain.usecase.GetAlbumsUseCase
+import com.arsh.lastfmclient.domain.usecase.album.GetAlbumsUseCase
 
 class AlbumViewModel(
     private val getAlbumsUseCase: GetAlbumsUseCase

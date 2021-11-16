@@ -1,10 +1,10 @@
-package com.arsh.lastfmclient.data.repository
+package com.arsh.lastfmclient.data.repository.album
 
 import android.util.Log
-import com.arsh.lastfmclient.data.model.Album
-import com.arsh.lastfmclient.data.repository.datasource.AlbumLocalDataSource
-import com.arsh.lastfmclient.data.repository.datasource.AlbumRemoteDataSource
-import com.arsh.lastfmclient.domain.repository.AlbumRepository
+import com.arsh.lastfmclient.data.model.album.Album
+import com.arsh.lastfmclient.data.repository.album.datasource.AlbumLocalDataSource
+import com.arsh.lastfmclient.data.repository.album.datasource.AlbumRemoteDataSource
+import com.arsh.lastfmclient.domain.repository.album.AlbumRepository
 import java.lang.Exception
 
 class AlbumRepositoryImpl(
@@ -21,7 +21,7 @@ class AlbumRepositoryImpl(
             val response = albumRemoteDataSource.getAlbums()
             val body = response.body()
             if (body!=null)
-                albumList = body.album
+                albumList = body.topalbums.album
 
         } catch (e: Exception){
             Log.e("TAG",e.message.toString())
@@ -37,7 +37,7 @@ class AlbumRepositoryImpl(
         } catch (e: Exception){
             Log.e("TAG",e.message.toString())
         }
-        if (albumList.isNotEmpty()){
+        if (albumList.isEmpty()){
             albumList = getAlbumsFromAPI()
             albumLocalDataSource.saveAlbumsToDB(albumList)
         }

@@ -3,8 +3,9 @@ package com.arsh.lastfmclient.presentation.album
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.arsh.lastfmclient.data.model.Album
-import com.arsh.lastfmclient.databinding.ListItemBinding
+import com.arsh.lastfmclient.data.model.album.Album
+import com.arsh.lastfmclient.databinding.ListItemViewBinding
+import com.bumptech.glide.Glide
 
 class AlbumAdapter : RecyclerView.Adapter<MyViewHolder>(){
     private val albumeList = ArrayList<Album>()
@@ -16,7 +17,7 @@ class AlbumAdapter : RecyclerView.Adapter<MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ListItemBinding.inflate(
+        val binding = ListItemViewBinding.inflate(
             layoutInflater,
             parent,
             false
@@ -35,11 +36,16 @@ class AlbumAdapter : RecyclerView.Adapter<MyViewHolder>(){
 
 }
 
-class MyViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(album:Album){
+class MyViewHolder(val binding: ListItemViewBinding) : RecyclerView.ViewHolder(binding.root){
+    fun bind(album: Album){
         binding.tvName.text = album.name
-        binding.tvMbid.text = album.mbid
-        binding.tvPlaycount.text = album.playcount.toString()
+        // displaying movie poster
+        val posterURL = album.images?.get(0)?.text
+
+        // display movie poster using Glide
+        Glide.with(binding.ivArtist.context)
+            .load(posterURL)
+            .into(binding.ivArtist)
     }
 
 }

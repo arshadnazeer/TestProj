@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.arsh.lastfmclient.databinding.ActivityHomeBinding
 import com.arsh.lastfmclient.presentation.album.AlbumActivity
+import com.arsh.lastfmclient.presentation.search.SearchArtistActivity
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -14,8 +15,9 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.button.setOnClickListener {
-            val intent = Intent(this, AlbumActivity::class.java)
+            val intent = Intent(this, SearchArtistActivity::class.java)
             startActivity(intent)
         }
+
     }
 }

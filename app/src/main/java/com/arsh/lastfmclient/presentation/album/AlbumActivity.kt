@@ -1,15 +1,20 @@
 package com.arsh.lastfmclient.presentation.album
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.GridLayout
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arsh.lastfmclient.databinding.ActivityAlbumBinding
+import com.arsh.lastfmclient.presentation.albumdetails.AlbumDetailActivity
 import com.arsh.lastfmclient.presentation.di.Injector
+import com.arsh.lastfmclient.presentation.search.SearchArtistAdapter
 import javax.inject.Inject
 
 class AlbumActivity : AppCompatActivity() {
@@ -17,7 +22,7 @@ class AlbumActivity : AppCompatActivity() {
     lateinit var factory: AlbumViewModelFactory
     private lateinit var albumViewModel: AlbumViewModel
     private lateinit var binding: ActivityAlbumBinding
-    private lateinit var adapter: AlbumAdapter
+    private lateinit var adapter: SearchArtistAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,17 +33,20 @@ class AlbumActivity : AppCompatActivity() {
             .inject(this)
 
         albumViewModel = ViewModelProvider(this,factory).get(AlbumViewModel::class.java)
-        val responseLiveData = albumViewModel.getAlbums()
-        responseLiveData.observe(this, Observer {
-            Log.e("TAGGG", it.toString())
-        })
-//        initRecyclerView()
+//        val responseLiveData = albumViewModel.getAlbums()
+//        responseLiveData.observe(this, Observer {
+//            Log.e("TAGGG", it.toString())
+//        })
+        initRecyclerView()
 
     }
 
     private fun initRecyclerView(){
-        binding.albumRecyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = AlbumAdapter()
+        binding.searchRecyclerView.layoutManager = GridLayoutManager(this,2)
+        adapter = SearchArtistAdapter{
+            val intent = Intent(this, AlbumDetailActivity::class.java)
+            startActivity(intent)
+        }
         binding.albumRecyclerView.adapter = adapter
         displayPopularAlbums()
     }

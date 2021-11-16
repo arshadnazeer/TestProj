@@ -1,6 +1,6 @@
-package com.arsh.lastfmclient.data.repository.datasource
+package com.arsh.lastfmclient.data.repository.album.datasource
 
-import com.arsh.lastfmclient.data.model.Album
+import com.arsh.lastfmclient.data.model.album.Album
 
 interface AlbumLocalDataSource {
     suspend fun getAlbumsFromDB():List<Album>

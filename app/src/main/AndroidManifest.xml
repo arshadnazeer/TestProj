@@ -9,11 +9,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LastFMClient">
         <activity
-            android:name=".presentation.AlbumDetailsActivity"
+            android:name=".presentation.search.SearchArtistActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.albumdetails.AlbumDetailsActivity"
             android:exported="true" />
         <activity
             android:name=".presentation.album.AlbumActivity"

@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.arsh.lastfmclient.data.model.Album
+import com.arsh.lastfmclient.data.model.album.Album
 
 @Dao
 interface AlbumDao {

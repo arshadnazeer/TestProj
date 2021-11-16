@@ -1,8 +1,8 @@
-package com.arsh.lastfmclient.data.repository.datasourceimpl
+package com.arsh.lastfmclient.data.repository.album.datasourceimpl
 
 import com.arsh.lastfmclient.data.db.AlbumDao
-import com.arsh.lastfmclient.data.model.Album
-import com.arsh.lastfmclient.data.repository.datasource.AlbumLocalDataSource
+import com.arsh.lastfmclient.data.model.album.Album
+import com.arsh.lastfmclient.data.repository.album.datasource.AlbumLocalDataSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
