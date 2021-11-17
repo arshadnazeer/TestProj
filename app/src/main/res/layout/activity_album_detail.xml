@@ -28,12 +28,48 @@
         app:layout_constraintGuide_begin="16dp" />
 
     <TextView
-        android:id="@+id/tv_title_text"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title Text"
+        android:text="Name"
+        android:textColor="@color/primaryColor"
+        android:textStyle="bold"
         android:textSize="24sp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toTopOf="@id/topGuideline" />
+
+    <TextView
+        android:id="@+id/tv_artist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Artist"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <ImageView
+        android:id="@+id/iv_artist"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="@android:color/darker_gray"
+        android:contentDescription="TODO"
+        android:scaleType="fitXY"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_artist"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_tracks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Tracks"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/iv_artist" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

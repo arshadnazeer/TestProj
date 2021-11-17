@@ -8,11 +8,12 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
+import kotlinx.parcelize.Parcelize
 import java.lang.reflect.Type
+
 
 @Entity(tableName = "top_albums")
 data class Album(
-
     @SerializedName("mbid")
     val mbid: String?,
     @SerializedName("name")
@@ -23,8 +24,13 @@ data class Album(
     @SerializedName("url")
     val url: String?,
     @SerializedName("image")
-    val images: ArrayList<Image>?
-)
+    val images: ArrayList<Image>
+
+){
+    @Ignore
+    @SerializedName("artist")
+    val artist: Artist?= null
+}
 
 class ImageTypeConverter {
     @TypeConverter

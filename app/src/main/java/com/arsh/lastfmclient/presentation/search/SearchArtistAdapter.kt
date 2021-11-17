@@ -1,21 +1,24 @@
 package com.arsh.lastfmclient.presentation.search
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.arsh.lastfmclient.data.model.search.Artists
 import com.arsh.lastfmclient.databinding.ListItemViewBinding
-import com.arsh.lastfmclient.presentation.album.AlbumActivity
 import com.bumptech.glide.Glide
 
-class SearchArtistAdapter(private val listener : View.OnClickListener) : RecyclerView.Adapter<MyViewHolder>() {
+class SearchArtistAdapter(private val searchItemContract: SearchItemContract) :
+    RecyclerView.Adapter<MyViewHolder>() {
     private val artistList = ArrayList<Artists>()
 
     fun setList(artists: List<Artists>) {
         artistList.clear()
         artistList.addAll(artists)
+    }
+
+    fun getList() : ArrayList<Artists>{
+        return artistList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -25,7 +28,7 @@ class SearchArtistAdapter(private val listener : View.OnClickListener) : Recycle
             parent,
             false
         )
-        return MyViewHolder(binding,listener)
+        return MyViewHolder(binding, searchItemContract)
 
     }
 
@@ -39,7 +42,8 @@ class SearchArtistAdapter(private val listener : View.OnClickListener) : Recycle
 
 }
 
-class MyViewHolder(val binding: ListItemViewBinding,val listener: View.OnClickListener) : RecyclerView.ViewHolder(binding.root) {
+class MyViewHolder(val binding: ListItemViewBinding, val searchItemContract: SearchItemContract) :
+    RecyclerView.ViewHolder(binding.root) {
     fun bind(artists: Artists) {
         binding.tvName.text = artists.name
         // displaying movie poster
@@ -50,8 +54,12 @@ class MyViewHolder(val binding: ListItemViewBinding,val listener: View.OnClickLi
             .load(posterURL)
             .into(binding.ivArtist)
 
-        binding.root.setOnClickListener(listener)
+        binding.root.setOnClickListener{
+            searchItemContract.clickedPos(adapterPosition)
+        }
     }
+}
 
-
+interface SearchItemContract {
+    fun clickedPos(pos : Int)
 }

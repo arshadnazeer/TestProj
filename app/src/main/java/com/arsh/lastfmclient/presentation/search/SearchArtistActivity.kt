@@ -16,10 +16,7 @@ import com.arsh.lastfmclient.R
 import com.arsh.lastfmclient.data.model.search.Artists
 import com.arsh.lastfmclient.databinding.ActivityAlbumBinding
 import com.arsh.lastfmclient.databinding.ActivitySearchArtistBinding
-import com.arsh.lastfmclient.presentation.album.AlbumActivity
-import com.arsh.lastfmclient.presentation.album.AlbumAdapter
-import com.arsh.lastfmclient.presentation.album.AlbumViewModel
-import com.arsh.lastfmclient.presentation.album.AlbumViewModelFactory
+import com.arsh.lastfmclient.presentation.album.*
 import com.arsh.lastfmclient.presentation.di.Injector
 import javax.inject.Inject
 
@@ -69,10 +66,14 @@ class SearchArtistActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         binding.searchRecyclerView.layoutManager = GridLayoutManager(this,2)
-        adapter = SearchArtistAdapter{
-            val intent = Intent(this, AlbumActivity::class.java)
-            startActivity(intent)
-        }
+        adapter = SearchArtistAdapter(object : SearchItemContract{
+            override fun clickedPos(pos: Int) {
+                val intent = Intent(
+                    this@SearchArtistActivity, AlbumActivity::class.java)
+                intent.putExtra(ARTIST_NAME,adapter.getList()[pos].name)
+                startActivity(intent)
+            }
+        })
         binding.searchRecyclerView.adapter = adapter
     }
 

@@ -1,18 +1,26 @@
 package com.arsh.lastfmclient.presentation.album
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.arsh.lastfmclient.R
 import com.arsh.lastfmclient.data.model.album.Album
 import com.arsh.lastfmclient.databinding.ListItemViewBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-class AlbumAdapter : RecyclerView.Adapter<MyViewHolder>(){
+class AlbumAdapter(private val albumItemContract: AlbumItemContract) :
+    RecyclerView.Adapter<MyViewHolder>() {
     private val albumeList = ArrayList<Album>()
 
-    fun setList(albums: List<Album>){
+    fun setList(albums: List<Album>) {
         albumeList.clear()
         albumeList.addAll(albums)
+    }
+
+    fun getList(): ArrayList<Album> {
+        return albumeList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -22,7 +30,7 @@ class AlbumAdapter : RecyclerView.Adapter<MyViewHolder>(){
             parent,
             false
         )
-        return MyViewHolder(binding)
+        return MyViewHolder(binding, albumItemContract)
 
     }
 
@@ -36,16 +44,46 @@ class AlbumAdapter : RecyclerView.Adapter<MyViewHolder>(){
 
 }
 
-class MyViewHolder(val binding: ListItemViewBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(album: Album){
+class MyViewHolder(
+    private val binding: ListItemViewBinding,
+    private val albumItemContract: AlbumItemContract
+) :
+    RecyclerView.ViewHolder(binding.root) {
+    fun bind(album: Album) {
         binding.tvName.text = album.name
         // displaying movie poster
-        val posterURL = album.images?.get(0)?.text
+        val posterURL = album.images[2].text
 
         // display movie poster using Glide
         Glide.with(binding.ivArtist.context)
             .load(posterURL)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(binding.ivArtist)
+
+        binding.root.setOnClickListener {
+            albumItemContract.clickedPos(adapterPosition)
+        }
+
+        binding.ivFavorite.visibility = View.VISIBLE
+
+        binding.ivFavorite.setOnClickListener {
+            albumItemContract.favPos(adapterPosition)
+        }
+
+        album.name?.let {
+            binding.ivFavorite.setImageResource(
+                if (albumItemContract.localFavoriteState(it))
+                    R.drawable.ic_baseline_favorite
+                else
+                    R.drawable.ic_baseline_favorite_border
+            )
+        }
     }
 
+}
+
+interface AlbumItemContract {
+    fun favPos(pos: Int)
+    fun clickedPos(pos: Int)
+    fun localFavoriteState(albumName: String): Boolean
 }

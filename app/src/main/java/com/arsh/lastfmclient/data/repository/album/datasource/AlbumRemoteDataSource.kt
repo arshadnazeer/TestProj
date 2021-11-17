@@ -4,5 +4,5 @@ import com.arsh.lastfmclient.data.model.album.Albums
 import retrofit2.Response
 
 interface AlbumRemoteDataSource {
-    suspend fun getAlbums() : Response<Albums>
+    suspend fun getAlbums(artistName : String) : Response<Albums>
 }

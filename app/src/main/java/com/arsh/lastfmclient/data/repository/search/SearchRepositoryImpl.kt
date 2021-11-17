@@ -6,7 +6,7 @@ import com.arsh.lastfmclient.data.repository.search.datasource.SearchRemoteDataS
 import com.arsh.lastfmclient.domain.repository.search.SearchRepository
 
 class SearchRepositoryImpl (
-    private val searchRepositoryDataSource: SearchRemoteDataSource
+    private val searchRemoteDataSource: SearchRemoteDataSource
         )  : SearchRepository{
     override suspend fun getArtists(artist : String): List<Artists>? {
         return getArtistsFromAPI(artist)
@@ -15,7 +15,7 @@ class SearchRepositoryImpl (
     private suspend fun getArtistsFromAPI(artist : String):List<Artists>{
         lateinit var artistList: List<Artists>
         try {
-            val response = searchRepositoryDataSource.getArtists(artist)
+            val response = searchRemoteDataSource.getArtists(artist)
             val body = response.body()
             if (body!=null)
                 artistList = body.results.artistmatches.artist

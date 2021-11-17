@@ -17,13 +17,13 @@
             android:name=".presentation.search.SearchArtistActivity"
             android:exported="true" />
         <activity
-            android:name=".presentation.albumdetails.AlbumDetailsActivity"
+            android:name=".presentation.albumdetails.AlbumDetailActivity"
             android:exported="true" />
         <activity
             android:name=".presentation.album.AlbumActivity"
             android:exported="true" />
         <activity
-            android:name=".presentation.HomeActivity"
+            android:name=".presentation.home.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -18,9 +19,9 @@ android {
 
         buildConfigField "String","API_KEY","\"cf64e61c33efee62f3390051ebfca8ce\""
         buildConfigField "String","BASE_URL","\"https://ws.audioscrobbler.com/\""
-        buildConfigField "String","method","\"artist.gettopalbums\""
-        buildConfigField "String","method","\"artist.search\""
-        buildConfigField "String","artist","\"cher\""
+        buildConfigField "String","method_topalbums","\"artist.gettopalbums\""
+        buildConfigField "String","method_topalbums_getinfo","\"album.getinfo\""
+        buildConfigField "String","method_search","\"artist.search\""
         buildConfigField "String","format","\"json\""
     }
 

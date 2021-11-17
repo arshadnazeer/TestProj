@@ -1,9 +1,6 @@
 package com.arsh.lastfmclient.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.arsh.lastfmclient.data.model.album.Album
 
 @Dao
@@ -14,6 +11,12 @@ interface AlbumDao {
     @Query("DELETE FROM top_albums")
     suspend fun deleteAllAlbums()
 
+    @Delete
+    suspend fun deleteAlbum(album : Album)
+
     @Query("SELECT * FROM top_albums")
     suspend fun getAlbums(): List<Album>
+
+    @Query("SELECT * FROM top_albums WHERE name= :albumName")
+    suspend fun fetchFavoriteState(albumName: String): List<Album>
 }

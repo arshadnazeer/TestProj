@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">LastFMClient</string>
     <string name="favorite">favorite</string>
+    <string name="no_albums_found">No albums found</string>
 </resources>

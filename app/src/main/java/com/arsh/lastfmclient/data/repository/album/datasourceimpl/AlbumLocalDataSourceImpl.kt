@@ -16,6 +16,16 @@ class AlbumLocalDataSourceImpl(private val albumDao: AlbumDao) : AlbumLocalDataS
         }
     }
 
+    override suspend fun removeAlbumsFromDB(album: Album) {
+        CoroutineScope(Dispatchers.IO).launch {
+            albumDao.deleteAlbum(album)
+        }
+    }
+
+    override suspend fun fetchFavoriteState(albumName: String): Boolean =
+        albumDao.fetchFavoriteState(albumName).isNotEmpty()
+
+
     override suspend fun clearAll() {
         CoroutineScope(Dispatchers.IO).launch {
             albumDao.deleteAllAlbums()
