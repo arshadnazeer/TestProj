@@ -17,12 +17,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String","API_KEY","\"cf64e61c33efee62f3390051ebfca8ce\""
-        buildConfigField "String","BASE_URL","\"https://ws.audioscrobbler.com/\""
-        buildConfigField "String","method_topalbums","\"artist.gettopalbums\""
-        buildConfigField "String","method_topalbums_getinfo","\"album.getinfo\""
-        buildConfigField "String","method_search","\"artist.search\""
-        buildConfigField "String","format","\"json\""
+        buildConfigField "String", "API_KEY", "\"cf64e61c33efee62f3390051ebfca8ce\""
+        buildConfigField "String", "BASE_URL", "\"https://ws.audioscrobbler.com/\""
+        buildConfigField "String", "method_topalbums", "\"artist.gettopalbums\""
+        buildConfigField "String", "method_topalbums_getinfo", "\"album.getinfo\""
+        buildConfigField "String", "method_search", "\"artist.search\""
+        buildConfigField "String", "format", "\"json\""
     }
 
     buildTypes {
@@ -94,7 +94,13 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-    testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.test:core:1.4.0'
+    testImplementation 'org.mockito:mockito-core:3.11.2'
+
+    testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2"
 }

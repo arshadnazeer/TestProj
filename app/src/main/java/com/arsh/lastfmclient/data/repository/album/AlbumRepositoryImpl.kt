@@ -40,7 +40,8 @@ class AlbumRepositoryImpl(
                 albumList = body.topalbums.album
 
         } catch (e: Exception){
-            Log.e("TAG",e.message.toString())
+//            Log.e("TAG",e.message.toString())
+            e.printStackTrace()
         }
         return albumList
     }
