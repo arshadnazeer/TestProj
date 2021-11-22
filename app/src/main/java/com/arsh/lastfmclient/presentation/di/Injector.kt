@@ -6,8 +6,8 @@ import com.arsh.lastfmclient.presentation.di.home.HomeSubComponent
 import com.arsh.lastfmclient.presentation.di.search.SearchSubComponent
 
 interface Injector {
-    fun createAlbumSubComponent() : AlbumSubComponent
-    fun createSearchSubComponent() : SearchSubComponent
-    fun createAlbumDetailsSubComponent() : DetailsSubComponent
-    fun createHomeSubComponent() : HomeSubComponent
+    fun createAlbumSubComponent(): AlbumSubComponent
+    fun createSearchSubComponent(): SearchSubComponent
+    fun createAlbumDetailsSubComponent(): DetailsSubComponent
+    fun createHomeSubComponent(): HomeSubComponent
 }

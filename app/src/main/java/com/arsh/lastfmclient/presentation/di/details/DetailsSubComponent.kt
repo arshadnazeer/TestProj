@@ -1,6 +1,5 @@
 package com.arsh.lastfmclient.presentation.di.details
 
-import com.arsh.lastfmclient.presentation.album.AlbumActivity
 import com.arsh.lastfmclient.presentation.albumdetails.AlbumDetailActivity
 import dagger.Subcomponent
 
@@ -10,7 +9,7 @@ interface DetailsSubComponent {
     fun inject(albumDetailsActivity: AlbumDetailActivity)
 
     @Subcomponent.Factory
-    interface Factory{
-            fun create() : DetailsSubComponent
-        }
+    interface Factory {
+        fun create(): DetailsSubComponent
+    }
 }

@@ -3,6 +3,9 @@ package com.arsh.lastfmclient.data.model.search
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * The data Class represents the single instance
+ */
 data class Artists(
     @SerializedName("image")
     val image: List<Image>,

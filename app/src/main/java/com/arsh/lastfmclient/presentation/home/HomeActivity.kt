@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.arsh.lastfmclient.databinding.ActivityHomeBinding
 import com.arsh.lastfmclient.presentation.album.AlbumAdapter
 import com.arsh.lastfmclient.presentation.album.AlbumItemContract
+import com.arsh.lastfmclient.presentation.album.IS_MAIN
 import com.arsh.lastfmclient.presentation.albumdetails.ALBUM_NAME
 import com.arsh.lastfmclient.presentation.albumdetails.AlbumDetailActivity
 import com.arsh.lastfmclient.presentation.di.Injector
@@ -17,6 +18,10 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
+
+/**
+ * Displays the list of albums saved locally in the database
+ */
 
 class HomeActivity : AppCompatActivity() {
 
@@ -48,6 +53,7 @@ class HomeActivity : AppCompatActivity() {
                     this@HomeActivity, AlbumDetailActivity::class.java
                 )
                 intent.putExtra(ALBUM_NAME, albumAdapter.getList()[pos].name)
+                intent.putExtra(IS_MAIN, true)
                 startActivity(intent)
             }
 
@@ -70,6 +76,8 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         (application as Injector).createHomeSubComponent()
             .inject(this)

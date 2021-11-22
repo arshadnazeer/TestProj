@@ -11,6 +11,9 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
+/**
+ * Module for Remote Datasource
+ */
 @Module
 class RemoteDataModule(
     private val apikey: String,
@@ -18,7 +21,7 @@ class RemoteDataModule(
 ) {
     @Singleton
     @Provides
-    fun providesRemoteDataSource(fmClientService: FMClientService) : AlbumRemoteDataSource{
+    fun providesRemoteDataSource(fmClientService: FMClientService): AlbumRemoteDataSource {
         return AlbumRemoteDataSourceImpl(
             fmClientService
         )
@@ -26,7 +29,7 @@ class RemoteDataModule(
 
     @Singleton
     @Provides
-    fun providesSearchRemoteDataSource(fmClientService: FMClientService) : SearchRemoteDataSource{
+    fun providesSearchRemoteDataSource(fmClientService: FMClientService): SearchRemoteDataSource {
         return SearchRemoteDataSourceImpl(
             fmClientService
         )
@@ -34,7 +37,7 @@ class RemoteDataModule(
 
     @Singleton
     @Provides
-    fun providesAlbumDetailsRemoteDataSource(fmClientService: FMClientService) : DetailsRemoteDataSource{
+    fun providesAlbumDetailsRemoteDataSource(fmClientService: FMClientService): DetailsRemoteDataSource {
         return DetailsRemoteDataSourceImpl(
             fmClientService
         )

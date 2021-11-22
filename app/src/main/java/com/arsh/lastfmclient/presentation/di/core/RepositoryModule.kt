@@ -15,6 +15,9 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
+/**
+ * Module for Repository
+ */
 @Module
 class RepositoryModule {
     @Singleton
@@ -22,7 +25,7 @@ class RepositoryModule {
     fun provideAlbumRepository(
         albumRemoteDataSource: AlbumRemoteDataSource,
         albumLocalDataSource: AlbumLocalDataSource,
-    ) : AlbumRepository {
+    ): AlbumRepository {
 
         return AlbumRepositoryImpl(
             albumRemoteDataSource, albumLocalDataSource
@@ -34,7 +37,7 @@ class RepositoryModule {
     @Provides
     fun provideSearchRepository(
         searchRemoteDataSource: SearchRemoteDataSource
-    ) : SearchRepository{
+    ): SearchRepository {
         return SearchRepositoryImpl(
             searchRemoteDataSource
         )
@@ -45,7 +48,7 @@ class RepositoryModule {
     fun provideAlbumDetailsRepository(
         detailsRemoteDataSource: DetailsRemoteDataSource,
         detailsLocalDataSource: DetailsLocalDataSource
-    ) : DetailsRepository{
+    ): DetailsRepository {
         return DetailsRepositoryImpl(
             detailsRemoteDataSource,
             detailsLocalDataSource

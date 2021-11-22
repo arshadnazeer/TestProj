@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".presentation.album.AlbumActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        app:title="Albums"
+        app:titleTextColor="@color/primaryTextColor"
+        android:background="@color/primaryColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:tooltipText="LastFM"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="wrap_content"
@@ -42,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toTopOf="@id/topGuideline"
+        app:layout_constraintTop_toBottomOf="@id/materialToolbar"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:itemCount="8"/>

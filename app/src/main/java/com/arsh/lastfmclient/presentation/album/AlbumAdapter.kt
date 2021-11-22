@@ -10,6 +10,9 @@ import com.arsh.lastfmclient.databinding.ListItemViewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
+/**
+ * The adapter class represents the list of data that is displayed in the recycler view
+ */
 class AlbumAdapter(private val albumItemContract: AlbumItemContract) :
     RecyclerView.Adapter<MyViewHolder>() {
     private val albumeList = ArrayList<Album>()
@@ -51,10 +54,8 @@ class MyViewHolder(
     RecyclerView.ViewHolder(binding.root) {
     fun bind(album: Album) {
         binding.tvName.text = album.name
-        // displaying movie poster
         val posterURL = album.images[2].text
 
-        // display movie poster using Glide
         Glide.with(binding.ivArtist.context)
             .load(posterURL)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -80,10 +81,4 @@ class MyViewHolder(
         }
     }
 
-}
-
-interface AlbumItemContract {
-    fun favPos(pos: Int)
-    fun clickedPos(pos: Int)
-    fun localFavoriteState(albumName: String): Boolean
 }

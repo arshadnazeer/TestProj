@@ -8,18 +8,21 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
+/**
+ * Module for database and dao
+ */
 @Module
 class DatabaseModule {
     @Singleton
     @Provides
-    fun providesDatabase(context: Context):FMClientDatabase{
-        return Room.databaseBuilder(context,FMClientDatabase::class.java,"fmclient")
+    fun providesDatabase(context: Context): FMClientDatabase {
+        return Room.databaseBuilder(context, FMClientDatabase::class.java, "fmclient")
             .build()
     }
 
     @Singleton
     @Provides
-    fun provideAlbumDAO(fmClientDatabase: FMClientDatabase) : AlbumDao{
+    fun provideAlbumDAO(fmClientDatabase: FMClientDatabase): AlbumDao {
         return fmClientDatabase.albumDao()
     }
 }

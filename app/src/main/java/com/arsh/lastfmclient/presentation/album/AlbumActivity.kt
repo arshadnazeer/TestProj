@@ -13,13 +13,17 @@ import com.arsh.lastfmclient.databinding.ActivityAlbumBinding
 import com.arsh.lastfmclient.presentation.albumdetails.ALBUM_NAME
 import com.arsh.lastfmclient.presentation.albumdetails.AlbumDetailActivity
 import com.arsh.lastfmclient.presentation.di.Injector
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
+/**
+ * Album Activity represents the list of all the albums
+ */
+
 const val ARTIST_NAME = "artist_name"
+const val IS_MAIN = "is_main"
 
 class AlbumActivity : AppCompatActivity() {
     @Inject
@@ -41,10 +45,6 @@ class AlbumActivity : AppCompatActivity() {
             .inject(this)
 
         albumViewModel = ViewModelProvider(this, factory)[AlbumViewModel::class.java]
-//        val responseLiveData = albumViewModel.getAlbums()
-//        responseLiveData.observe(this, Observer {
-//            Log.e("TAGGG", it.toString())
-//        })
         initRecyclerView()
 
     }
@@ -55,10 +55,13 @@ class AlbumActivity : AppCompatActivity() {
             override fun favPos(pos: Int) {
                 albumViewModel.viewModelScope.launch {
                     adapter.getList()[pos].name?.let {
-                        if(albumViewModel.fetchFavoriteState(it))
+                        if (albumViewModel.fetchFavoriteState(it))
                             albumViewModel.removeFromFavorites(adapter.getList()[pos])
-                        else
-                            albumViewModel.addToFavorites(adapter.getList()[pos])
+                        else {
+                            val album = adapter.getList()[pos]
+                            album.artistName = artistName
+                            albumViewModel.addToFavorites(album)
+                        }
                     }
 
                     runOnUiThread {
@@ -73,6 +76,7 @@ class AlbumActivity : AppCompatActivity() {
                 )
                 intent.putExtra(ALBUM_NAME, adapter.getList()[pos].name)
                 intent.putExtra(ARTIST_NAME, artistName)
+                intent.putExtra(IS_MAIN,false)
                 startActivity(intent)
             }
 
@@ -95,8 +99,8 @@ class AlbumActivity : AppCompatActivity() {
 
     private fun displayPopularAlbums() {
         binding.albumProgressBar.visibility = View.VISIBLE
-        val responseLiveData = albumViewModel.getAlbums(artistName)
-        responseLiveData.observe(this, Observer {
+
+        albumViewModel.albumLiveData.observe(this, Observer {
             if (it != null) {
                 adapter.setList(it)
                 adapter.notifyDataSetChanged()
@@ -106,5 +110,10 @@ class AlbumActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "No Data Available", Toast.LENGTH_LONG).show()
             }
         })
+
+        albumViewModel.viewModelScope.launch {
+            albumViewModel.getAlbums(artistName)
+        }
+
     }
 }

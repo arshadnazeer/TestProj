@@ -5,6 +5,9 @@ import androidx.lifecycle.liveData
 import com.arsh.lastfmclient.data.model.album.Album
 import com.arsh.lastfmclient.domain.usecase.home.GetHomeUseCase
 
+/**
+ * ViewModel class for [HomeActivity]
+ */
 class HomeViewModel(
     private val getHomeUseCase: GetHomeUseCase
 ) : ViewModel() {
@@ -13,9 +16,9 @@ class HomeViewModel(
         emit(albumDetails)
     }
 
-    suspend fun removeFromFavorites(album : Album) =
+    suspend fun removeFromFavorites(album: Album) =
         getHomeUseCase.removeFromDb(album)
 
-    suspend fun fetchFavoriteState(albumName : String) : Boolean =
+    suspend fun fetchFavoriteState(albumName: String): Boolean =
         getHomeUseCase.fetchFavoriteState(albumName)
 }

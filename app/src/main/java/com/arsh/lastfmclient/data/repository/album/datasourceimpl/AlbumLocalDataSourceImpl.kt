@@ -7,6 +7,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * Class implementing the [AlbumLocalDataSource] interface
+ */
+
 class AlbumLocalDataSourceImpl(private val albumDao: AlbumDao) : AlbumLocalDataSource {
     override suspend fun getAlbumsFromDB(): List<Album> = albumDao.getAlbums()
 

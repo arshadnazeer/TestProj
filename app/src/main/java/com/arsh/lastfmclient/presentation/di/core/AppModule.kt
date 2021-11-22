@@ -9,6 +9,9 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
+/**
+ * Module providing application context
+ */
 @Module(subcomponents = [AlbumSubComponent::class, SearchSubComponent::class, DetailsSubComponent::class, HomeSubComponent::class])
 class AppModule(private val context: Context) {
 

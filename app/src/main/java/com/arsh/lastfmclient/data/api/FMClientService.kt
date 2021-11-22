@@ -8,47 +8,50 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Service Interface with URL Endpoints Helps Get Data From the LastFMClient API
+ */
 interface FMClientService {
 
     @GET("2.0/")
     suspend fun getTopAlbums(
         @Query("method")
-        method:String = BuildConfig.method_topalbums,
+        method: String = BuildConfig.method_topalbums,
         @Query(value = "artist")
-        artist:String,
+        artist: String,
         @Query("api_key")
-        apiKey:String = BuildConfig.API_KEY,
+        apiKey: String = BuildConfig.API_KEY,
         @Query("format")
-        format:String = BuildConfig.format,
+        format: String = BuildConfig.format,
 
-    ): Response<Albums>
+        ): Response<Albums>
 
     @GET("2.0/")
     suspend fun getArtists(
         @Query("method")
-        method:String = BuildConfig.method_search,
+        method: String = BuildConfig.method_search,
         @Query("artist")
-        artist:String,
+        artist: String,
         @Query("api_key")
-        apiKey:String = BuildConfig.API_KEY,
+        apiKey: String = BuildConfig.API_KEY,
         @Query("format")
-        format:String = BuildConfig.format,
+        format: String = BuildConfig.format,
 
-    ) : Response <SearchResult>
+        ): Response<SearchResult>
 
 
     @GET("2.0/")
     suspend fun getDetails(
         @Query("method")
-        method:String = BuildConfig.method_topalbums_getinfo,
+        method: String = BuildConfig.method_topalbums_getinfo,
         @Query("artist")
-        Artist:String,
+        Artist: String,
         @Query("api_key")
-        apiKey:String = BuildConfig.API_KEY,
+        apiKey: String = BuildConfig.API_KEY,
         @Query("album")
-        album:String,
+        album: String,
         @Query("format")
-        format:String = BuildConfig.format,
+        format: String = BuildConfig.format,
 
-        ) : Response <Details>
+        ): Response<Details>
 }

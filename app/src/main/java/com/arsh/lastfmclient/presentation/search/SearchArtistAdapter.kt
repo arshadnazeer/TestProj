@@ -1,13 +1,15 @@
 package com.arsh.lastfmclient.presentation.search
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.arsh.lastfmclient.data.model.search.Artists
 import com.arsh.lastfmclient.databinding.ListItemViewBinding
 import com.bumptech.glide.Glide
 
+/**
+ * The adapter class represents the list of data that is displayed in the recycler view
+ */
 class SearchArtistAdapter(private val searchItemContract: SearchItemContract) :
     RecyclerView.Adapter<MyViewHolder>() {
     private val artistList = ArrayList<Artists>()
@@ -17,7 +19,7 @@ class SearchArtistAdapter(private val searchItemContract: SearchItemContract) :
         artistList.addAll(artists)
     }
 
-    fun getList() : ArrayList<Artists>{
+    fun getList(): ArrayList<Artists> {
         return artistList
     }
 
@@ -54,12 +56,8 @@ class MyViewHolder(val binding: ListItemViewBinding, val searchItemContract: Sea
             .load(posterURL)
             .into(binding.ivArtist)
 
-        binding.root.setOnClickListener{
+        binding.root.setOnClickListener {
             searchItemContract.clickedPos(adapterPosition)
         }
     }
-}
-
-interface SearchItemContract {
-    fun clickedPos(pos : Int)
 }

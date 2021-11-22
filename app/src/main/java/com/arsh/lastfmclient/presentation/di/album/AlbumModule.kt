@@ -11,7 +11,7 @@ class AlbumModule {
     @Provides
     fun providesAlbumViewModelFactory(
         getAlbumsUseCase: GetAlbumsUseCase
-    ) : AlbumViewModelFactory{
+    ): AlbumViewModelFactory {
         return AlbumViewModelFactory(
             getAlbumsUseCase
         )

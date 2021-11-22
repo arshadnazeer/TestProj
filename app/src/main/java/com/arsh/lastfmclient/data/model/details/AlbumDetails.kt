@@ -3,6 +3,9 @@ package com.arsh.lastfmclient.data.model.details
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * The data Class represents the single instance
+ */
 data class AlbumDetails(
     @SerializedName("artist")
     val artist: String,

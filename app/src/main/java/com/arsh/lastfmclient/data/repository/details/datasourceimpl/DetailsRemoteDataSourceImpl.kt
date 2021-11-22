@@ -5,6 +5,9 @@ import com.arsh.lastfmclient.data.model.details.Details
 import com.arsh.lastfmclient.data.repository.details.datasource.DetailsRemoteDataSource
 import retrofit2.Response
 
+/**
+ * Class implementing the [DetailsRemoteDataSource] interface
+ */
 class DetailsRemoteDataSourceImpl(
     private val fmClientService: FMClientService
 ) : DetailsRemoteDataSource {

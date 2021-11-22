@@ -3,6 +3,10 @@ package com.arsh.lastfmclient.data.db
 import androidx.room.*
 import com.arsh.lastfmclient.data.model.album.Album
 
+/**
+ * Dao Interface for the Albums performing operations to
+ * interact with the Database
+ */
 @Dao
 interface AlbumDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -16,6 +20,9 @@ interface AlbumDao {
 
     @Query("SELECT * FROM top_albums")
     suspend fun getAlbums(): List<Album>
+
+    @Query("SELECT * FROM top_albums WHERE name= :albumName")
+    suspend fun getAlbumsByAlbumName(albumName: String): List<Album>
 
     @Query("SELECT * FROM top_albums WHERE name= :albumName")
     suspend fun fetchFavoriteState(albumName: String): List<Album>

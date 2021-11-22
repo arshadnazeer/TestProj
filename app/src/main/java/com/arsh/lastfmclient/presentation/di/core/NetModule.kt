@@ -7,11 +7,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+/**
+ * Module providing the Retrofit instance
+ **/
 @Module
-class NetModule(private val baseUrl : String) {
+class NetModule(private val baseUrl: String) {
     @Singleton
     @Provides
-    fun provideRetrofit() : Retrofit{
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(baseUrl)
@@ -20,7 +23,7 @@ class NetModule(private val baseUrl : String) {
 
     @Singleton
     @Provides
-    fun provideFMClientService(retrofit: Retrofit) : FMClientService{
+    fun provideFMClientService(retrofit: Retrofit): FMClientService {
         return retrofit.create(FMClientService::class.java)
     }
 }

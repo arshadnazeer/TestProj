@@ -8,13 +8,17 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.arsh.lastfmclient.data.model.album.Album
 import com.arsh.lastfmclient.data.model.album.ImageTypeConverter
 
-@Database(entities = [Album::class],version = 2,exportSchema = false)
+/**
+ * Abstract class for the Room database.
+ * Class extends the Room Database class and is annoted with @Database annotation
+ */
+@Database(entities = [Album::class], version = 2, exportSchema = false)
 @TypeConverters(ImageTypeConverter::class)
-abstract class FMClientDatabase : RoomDatabase(){
+abstract class FMClientDatabase : RoomDatabase() {
 
     abstract fun albumDao(): AlbumDao
 
-    val MIGRATION_1_2 = object : Migration(1, 2){
+    val MIGRATION_1_2 = object : Migration(1, 2) {
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL("CREATE TABLE IF NOT EXISTS `User` (`id` INTEGER, PRIMARY KEY(`id`))")
         }

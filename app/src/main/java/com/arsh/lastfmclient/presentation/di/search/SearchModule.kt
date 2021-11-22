@@ -1,9 +1,6 @@
 package com.arsh.lastfmclient.presentation.di.search
 
-import com.arsh.lastfmclient.domain.usecase.album.GetAlbumsUseCase
 import com.arsh.lastfmclient.domain.usecase.search.GetArtistsUseCase
-import com.arsh.lastfmclient.presentation.album.AlbumViewModelFactory
-import com.arsh.lastfmclient.presentation.di.album.AlbumScope
 import com.arsh.lastfmclient.presentation.search.SearchArtistViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -14,7 +11,7 @@ class SearchModule {
     @Provides
     fun providesSearchViewModelFactory(
         getArtistsUseCase: GetArtistsUseCase
-    ) : SearchArtistViewModelFactory {
+    ): SearchArtistViewModelFactory {
         return SearchArtistViewModelFactory(
             getArtistsUseCase
         )

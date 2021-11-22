@@ -36,12 +36,12 @@ internal class AlbumRepositoryTest {
         val albumList = listOf(
             Album(
                 "1221", "beatles", 2, "121",
-                arrayListOf(Image("", ""))
+                arrayListOf(Image("", "")),
+                "Jackson"
             )
         )
 
-        val albums = Albums(Topalbums(albumList,Attr("","","","","")))
-
+        val albums = Albums(Topalbums(albumList, Attr("", "", "", "", "")))
 
         testCoroutineRule.runBlockingTest {
             doReturn(Response.success(albums))
@@ -69,6 +69,40 @@ internal class AlbumRepositoryTest {
 
     }
 
+    @Test
+    fun `when the local db call returns a non empty list`(){
+        val albumList = listOf(
+            Album(
+                "1221", "beatles", 2, "121",
+                arrayListOf(Image("", "")),
+                "Jackson"
+            )
+        )
 
+        val albums = Albums(Topalbums(albumList, Attr("", "", "", "", "")))
 
+        testCoroutineRule.runBlockingTest {
+            doReturn(Response.success(albums))
+                .`when`(albumLocalDataSource).getAlbumsFromDB()
+
+            albumRepository.getLocalAlbumList()
+
+            verify(albumLocalDataSource).getAlbumsFromDB()
+        }
+    }
+
+    @Test
+    fun `when the local db call fails throws exception`(){
+        val throwable = Throwable()
+        val artistName = "beatles"
+        Assert.assertThrows(Throwable::class.java) {
+            testCoroutineRule.runBlockingTest {
+                doThrow(throwable).`when`(albumLocalDataSource).getAlbumsFromDB()
+
+                albumRepository.getAlbums(artistName)
+
+                verify(albumLocalDataSource).getAlbumsFromDB()
+            }
+        }
+    }
 }

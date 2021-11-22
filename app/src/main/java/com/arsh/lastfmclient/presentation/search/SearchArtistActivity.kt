@@ -1,25 +1,23 @@
 package com.arsh.lastfmclient.presentation.search
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.arsh.lastfmclient.R
-import com.arsh.lastfmclient.data.model.search.Artists
-import com.arsh.lastfmclient.databinding.ActivityAlbumBinding
 import com.arsh.lastfmclient.databinding.ActivitySearchArtistBinding
 import com.arsh.lastfmclient.presentation.album.*
 import com.arsh.lastfmclient.presentation.di.Injector
 import javax.inject.Inject
 
+/**
+ * Displays the list of artist searched
+ */
 class SearchArtistActivity : AppCompatActivity() {
     @Inject
     lateinit var factory: SearchArtistViewModelFactory
@@ -47,7 +45,7 @@ class SearchArtistActivity : AppCompatActivity() {
             displaySearchedArtists()
         }
 
-        binding.editTextTextPersonName.addTextChangedListener(object : TextWatcher{
+        binding.editTextTextPersonName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -55,7 +53,7 @@ class SearchArtistActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                if(p0.isNullOrEmpty()){
+                if (p0.isNullOrEmpty()) {
                     adapter.setList(emptyList())
                     adapter.notifyDataSetChanged()
                 }
@@ -65,12 +63,13 @@ class SearchArtistActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        binding.searchRecyclerView.layoutManager = GridLayoutManager(this,2)
-        adapter = SearchArtistAdapter(object : SearchItemContract{
+        binding.searchRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        adapter = SearchArtistAdapter(object : SearchItemContract {
             override fun clickedPos(pos: Int) {
                 val intent = Intent(
-                    this@SearchArtistActivity, AlbumActivity::class.java)
-                intent.putExtra(ARTIST_NAME,adapter.getList()[pos].name)
+                    this@SearchArtistActivity, AlbumActivity::class.java
+                )
+                intent.putExtra(ARTIST_NAME, adapter.getList()[pos].name)
                 startActivity(intent)
             }
         })

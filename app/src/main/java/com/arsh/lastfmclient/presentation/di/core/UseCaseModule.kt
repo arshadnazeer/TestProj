@@ -10,6 +10,9 @@ import com.arsh.lastfmclient.domain.usecase.search.GetArtistsUseCase
 import dagger.Module
 import dagger.Provides
 
+/**
+ * Module for UseCases
+ */
 @Module
 class UseCaseModule {
     @Provides

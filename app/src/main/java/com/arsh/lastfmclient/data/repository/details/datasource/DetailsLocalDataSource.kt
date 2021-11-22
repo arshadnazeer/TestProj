@@ -1,9 +1,10 @@
 package com.arsh.lastfmclient.data.repository.details.datasource
 
 import com.arsh.lastfmclient.data.model.album.Album
-import com.arsh.lastfmclient.data.model.details.Details
-import retrofit2.Response
 
+/**
+ * Interface with functions performing operations to interact with the database locally
+ */
 interface DetailsLocalDataSource {
-    suspend fun getAlbums(albumName : String) : List<Album>
+    suspend fun getAlbums(albumName: String): List<Album>
 }

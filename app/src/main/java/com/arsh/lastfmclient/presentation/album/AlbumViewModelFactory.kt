@@ -4,6 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.arsh.lastfmclient.domain.usecase.album.GetAlbumsUseCase
 
+/**
+ * Factory class for [AlbumViewModel]
+ */
 class AlbumViewModelFactory(
     private val getAlbumsUseCase: GetAlbumsUseCase
 ) : ViewModelProvider.Factory {

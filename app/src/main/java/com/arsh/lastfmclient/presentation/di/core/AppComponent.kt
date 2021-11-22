@@ -7,6 +7,10 @@ import com.arsh.lastfmclient.presentation.di.search.SearchSubComponent
 import dagger.Component
 import javax.inject.Singleton
 
+/**
+ * Components usage in the application
+ */
+
 @Singleton
 @Component(
     modules = [

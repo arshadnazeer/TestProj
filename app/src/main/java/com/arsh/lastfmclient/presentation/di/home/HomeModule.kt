@@ -1,7 +1,6 @@
 package com.arsh.lastfmclient.presentation.di.home
 
 import com.arsh.lastfmclient.domain.usecase.home.GetHomeUseCase
-import com.arsh.lastfmclient.presentation.di.search.SearchScope
 import com.arsh.lastfmclient.presentation.home.HomeViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -12,7 +11,7 @@ class HomeModule {
     @Provides
     fun providesHomeViewModelFactory(
         getHomeUseCase: GetHomeUseCase
-    ) : HomeViewModelFactory {
+    ): HomeViewModelFactory {
         return HomeViewModelFactory(
             getHomeUseCase
         )

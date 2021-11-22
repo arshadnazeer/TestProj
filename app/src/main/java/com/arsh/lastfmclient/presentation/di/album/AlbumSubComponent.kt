@@ -9,7 +9,7 @@ interface AlbumSubComponent {
     fun inject(albumActivity: AlbumActivity)
 
     @Subcomponent.Factory
-    interface Factory{
-            fun create() : AlbumSubComponent
-        }
+    interface Factory {
+        fun create(): AlbumSubComponent
+    }
 }

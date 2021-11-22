@@ -9,6 +9,8 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
+        app:title="Home"
+        app:titleTextColor="@color/primaryTextColor"
         android:background="@color/primaryColor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -58,7 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.9"
-        app:srcCompat="@drawable/ic_baseline_search"
+        app:srcCompat="@drawable/ic_baseline_search_24"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

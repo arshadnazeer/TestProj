@@ -8,6 +8,10 @@ import com.arsh.lastfmclient.data.repository.details.datasource.DetailsLocalData
 import com.arsh.lastfmclient.data.repository.details.datasource.DetailsRemoteDataSource
 import com.arsh.lastfmclient.domain.repository.details.DetailsRepository
 
+/**
+ * This is the implementation class of the Details Repository Interface present in the domain layer
+ *The Class is injected with dependencies for local datasource and remote datasource
+ */
 class DetailsRepositoryImpl(
     private val detailsRemoteDataSource: DetailsRemoteDataSource,
     private val detailsLocalDataSource: DetailsLocalDataSource
